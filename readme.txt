@@ -8,3 +8,10 @@ El personaje va a poder caminar sobre su cuarto y ver los diferentes objetos per
 
 La idea es poder generar las emociones que viven las personas noctámbulas amantes de la noche y la soledad, donde, a pesar de estar dentro de 4 paredes se pueden vivir experiencias muy significativas.
 
+Ejemplos de la escena:
+
+https://steamuserimages-a.akamaihd.net/ugc/1009276395361453532/EEBBCC2BC35A312CB9AD073042B6BF2252A77373/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true
+
+https://www.kibrispdr.org/data/6/anime-bedroom-background-2.jpg 
+
+https://images6.alphacoders.com/106/1061720.jpg 
