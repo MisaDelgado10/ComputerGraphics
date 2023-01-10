@@ -4,9 +4,12 @@ Queremos desarrollar una escena melancólica durante la madrugada, teniendo como
 
 La interacción:
 
-El personaje va a poder caminar sobre su cuarto y ver los diferentes objetos pero sólo podrá interactuar con la computadora para abrir Spotify y reproducir su tan amada playlist que lo acompaña todas las madrugadas.
+El personaje va a poder caminar sobre su cuarto y ver los diferentes objetos pero sólo podrá interactuar con la computadora para abrir 
+Spotify y reproducir su tan amada playlist que lo acompaña todas las madrugadas. La idea es poder usar la API de Spotify que te permita
+iniciar sesión y poder reproducir tus playlists.
 
-La idea es poder generar las emociones que viven las personas noctámbulas amantes de la noche y la soledad, donde, a pesar de estar dentro de 4 paredes se pueden vivir experiencias muy significativas.
+La idea es poder generar las emociones que viven las personas noctámbulas amantes de la noche y la soledad, donde, a pesar de estar
+dentro de 4 paredes se pueden vivir experiencias muy significativas.
 
 Ejemplos de la escena:
 
