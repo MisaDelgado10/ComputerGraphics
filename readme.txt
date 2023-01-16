@@ -1,3 +1,7 @@
+Tecnología a usar:
+
+WebGL
+
 Descripción de la escena:
 
 Queremos desarrollar una escena melancólica durante la madrugada, teniendo como personaje principal a un estudiante dentro de su cuarto. Todo va a estar oscuro pero la luz de la luna y de la computadora van a poder mostrar algunos objetos del cuarto como la cama, la ventana, el escritorio, etc, junto con las sombras de los objetos.
