@@ -18,9 +18,6 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement);
 
-window.addEventListener('resize', () => {
-    OnWindowResize();
-  }, false);
 
 //Shadows
 renderer.shadowMap.enabled = true;
@@ -136,6 +133,17 @@ mtlLoader.load('desk.mtl', function (materials) {
 
 });
 
+ // AUDIO
+ var audioLoader = new THREE.AudioLoader();
+ var listener = new THREE.AudioListener();
+ var audio = new THREE.Audio(listener);
+ audioLoader.load('/examples/3d-obj-loader/assets/Moby-Porcelain.ogg', function(buffer) {
+     audio.setBuffer(buffer);
+     audio.setLoop(true);
+     audio.setVolume(0.4);
+ });
+
+
 mtlLoader.load('yoshi.mtl', function (materials) {
 
     materials.preload();
@@ -145,12 +153,19 @@ mtlLoader.load('yoshi.mtl', function (materials) {
     objLoader.setPath('/examples/3d-obj-loader/assets/');
     objLoader.load('yoshi.obj', function (mesh) {
 
-        mesh.traverse(function(node){
-            if(node instanceof THREE.Mesh){
-                node.castShadow = true;
-                node.receiveShadow = true; 
-            }
+        var objBbox = new THREE.Box3().setFromObject(mesh);
+
+        // Geometry vertices centering to world axis
+        var bboxCenter = objBbox.getCenter().clone();
+        bboxCenter.multiplyScalar(-1);
+
+        mesh.traverse(function (child) {
+          if (child instanceof THREE.Mesh) {
+            child.geometry.translate(bboxCenter.x, bboxCenter.y, bboxCenter.z);
+          }
         });
+
+        objBbox.setFromObject(mesh); // Update the bounding box
 
         mesh.position.set(0,0,0);
         mesh.castShadow = true;
@@ -159,24 +174,35 @@ mtlLoader.load('yoshi.mtl', function (materials) {
         var xSpeed = 10;
         var ySpeed = 10;
         
+        var playingSong = false;
+
         document.addEventListener("keydown", onDocumentKeyDown, false);
         function onDocumentKeyDown(event) {
             var keyCode = event.which;
             if (keyCode == 87) {
                 mesh.position.y += ySpeed
-                // mesh.rotation.z = Math.PI;
+                mesh.rotation.z = Math.PI;
             } else if (keyCode == 83) {
                 mesh.position.y -= ySpeed;
-                // mesh.rotation.z = 0;
+                mesh.rotation.z = 0;
             } else if (keyCode == 65) {
                 mesh.position.x -= xSpeed;
-                // mesh.rotation.z= -Math.PI/2;
+                mesh.rotation.z= -Math.PI/2;
             } else if (keyCode == 68) {
                 mesh.position.x += xSpeed;
-                // mesh.rotatsion.z= Math.PI/2;
+                mesh.rotation.z= Math.PI/2;
+                console.log(mesh.position.x+" "+mesh.position.y);
+        scene.add(mesh);
+            } else if (keyCode == 32) {
+                playingSong = !playingSong;
+                if(playingSong === true  && (mesh.position.x > 90 && mesh.position.x < 130 && (mesh.position.y > 40 && mesh.position.y < 100))){
+                    audio.play();
+                }
+                else if((mesh.position.x > 90 && mesh.position.x < 130 && (mesh.position.y > 40 && mesh.position.y < 100))){
+                    audio.stop();
+                }
             }
         };
-
         scene.add(mesh);
     });
 });
@@ -237,10 +263,6 @@ var animate = function () {
 	renderer.render(scene, camera);
 };
 
-var OnWindowResize = function () {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    threejs.setSize(window.innerWidth, window.innerHeight);
-  }
+
 
 animate();
