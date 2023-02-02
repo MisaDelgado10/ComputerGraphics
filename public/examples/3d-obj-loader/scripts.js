@@ -33,6 +33,7 @@ controls.enableDamping = true;
 controls.dampingFactor = 0.25;
 controls.enableZoom = true;
 
+//LUCES
 var keyLight = new THREE.DirectionalLight(0xFFFFFF, 1.0);
 keyLight.position.set(1,0,0);
 keyLight.target.position.set(300,300,10);
@@ -57,6 +58,7 @@ scene.add(light);
 // scene.add(fillLight);
 // scene.add(backLight);
 
+//CAMA
 var mtlLoader = new THREE.MTLLoader();
 mtlLoader.setTexturePath('/examples/3d-obj-loader/assets/');
 mtlLoader.setPath('/examples/3d-obj-loader/assets/');
@@ -84,6 +86,7 @@ mtlLoader.load('bed.mtl', function (materials) {
 
 });
 
+//SILLA
 mtlLoader.load('silla.mtl', function (materials) {
 
     materials.preload();
@@ -110,6 +113,7 @@ mtlLoader.load('silla.mtl', function (materials) {
 
 });
 
+//DESK
 mtlLoader.load('desk.mtl', function (materials) {
 
     materials.preload();
@@ -143,7 +147,7 @@ mtlLoader.load('desk.mtl', function (materials) {
      audio.setVolume(0.4);
  });
 
-
+//YOSHI
 mtlLoader.load('yoshi.mtl', function (materials) {
 
     materials.preload();
@@ -208,7 +212,7 @@ mtlLoader.load('yoshi.mtl', function (materials) {
 });
 
 
-
+//COMPUTADORA
 mtlLoader.load('computer.mtl', function (materials) {
 
     materials.preload();
@@ -232,6 +236,7 @@ mtlLoader.load('computer.mtl', function (materials) {
 
 });
 
+//LAMPARA
 mtlLoader.load('lamp.mtl', function (materials) {
 
     materials.preload();
