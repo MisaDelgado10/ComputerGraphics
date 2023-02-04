@@ -3,12 +3,15 @@ var scene = new THREE.Scene();
 var loader_floor = new THREE.TextureLoader();
 loader_floor.load('/examples/3d-obj-loader/assets/floor.jpg',function(texture){
     scene.background = texture;
+    scene.receiveShadow();
 });
 
 var yoshiX = 0;
 var yoshiY = 0;
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 1.0, 1000 );
 camera.position.z = 200;
+
+
 
 // const light = new THREE.AmbientLight( 0x404040 ); // soft white light
 // scene.add( light );
@@ -20,7 +23,7 @@ document.body.appendChild( renderer.domElement);
 
 
 //Shadows
-renderer.shadowMap.enabled = true;
+renderer.shadowMapEnabled = true;
 renderer.shadowMap.type =THREE.PCFSoftShadowMap;
 // renderer.physicallyCorrectLights = true;
 // renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -47,6 +50,7 @@ keyLight.shadow.camera.left = 500;
 keyLight.shadow.camera.right = -500;
 keyLight.shadow.camera.top = 500;
 keyLight.shadow.camera.bottom = -500;
+keyLight.shadow.camera.visible = true;
 scene.add(keyLight);
 
 scene.add(keyLight);
@@ -73,10 +77,11 @@ mtlLoader.load('bed.mtl', function (materials) {
 
         mesh.traverse(function(node){
             if(node instanceof THREE.Mesh){
-                node.castShadow = false;
+                node.castShadow = true;
                 node.receiveShadow = true; 
             }
         });
+
 
         scene.add(mesh);
         mesh.position.set(-150,0,0);
@@ -224,8 +229,8 @@ mtlLoader.load('computer.mtl', function (materials) {
 
         mesh.traverse(function(node){
             if(node instanceof THREE.Mesh){
-                // node.castShadow = true;
-                // node.receiveShadow = true; 
+                //node.castShadow = true;
+                //node.receiveShadow = true; 
             }
         });
 
